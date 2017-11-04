@@ -23,6 +23,7 @@ def cmp_date(a, b):
 def parse_date(str):
     d = str.split('-')
     d[0] = int(d[0])
+    if d[0] < 100: d[0] = d[0] + 2000
     d[1] = int(d[1])
     if len(d) <= 2:
         d += [ None ]
