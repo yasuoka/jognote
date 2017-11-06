@@ -60,7 +60,7 @@ def main():
     while cmp_date(c, e) <= 0:
         xml = urlopen(('http://www.jognote.com/user/{uid}/jogs?' +
             'cycle=daily&month={month}&year={year}&format=xml').format(
-            uid=28041, year=c[0], month=c[1])).read()
+            uid=uid, year=c[0], month=c[1])).read()
         root = ET.fromstring(xml)
         graphs = root.find('graphs')[1]
         for i, x in enumerate(root.find('series')):
