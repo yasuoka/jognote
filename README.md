@@ -13,3 +13,12 @@ JogNote から、走行距離を取り出して JSON で出力します
     : 10.0, "2017-10-28": 8.0, "2017-10-29": 20.0, "2017-10-31": 10.0, "2017
     -11-01": 15.0, "2017-11-03": 5.0}
     %
+
+Make a chart from the JSON
+
+そのデータをグラフ化します
+
+    % python3.6 jognote.py 28041 2010-01 2017-11 > 28041.json
+    % python3.6 mileage_chart.py 28041.json
+
+![chart sample](https://github.com/yasuoka/jognote/raw/master/28041.png)
