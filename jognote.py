@@ -55,7 +55,7 @@ def main():
 
     s = [s[0], s[1], s[2] if not s[2] is None else 1]
     e = [e[0], e[1], e[2] if not e[2] is None else 31]
-    c = s
+    c = [ s[0], s[1], 1 ]
     r = {}
     while cmp_date(c, e) <= 0:
         xml = urlopen(('http://www.jognote.com/user/{uid}/jogs?' +
@@ -69,6 +69,8 @@ def main():
             dt = datetime.datetime.strptime(x.text, '%y/%m/%d')
             if cmp_date([dt.year, dt.month, dt.day], e) > 0:
                 break
+            if cmp_date([dt.year, dt.month, dt.day], s) < 0:
+                continue
             r[datetime.datetime.strftime(dt, '%Y-%m-%d')] = \
                 float(graphs[i].text)
         if c[1] == 12:
