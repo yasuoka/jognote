@@ -28,7 +28,7 @@ for d in miledata:
 
 x = sorted(monmile.keys())
 y = list(map(lambda dt: monmile[dt], x))
-nmons = 3.0
+nmons = 3
 y2 = np.convolve(y, np.ones(nmons)/nmons, mode='valid')
 
 width=31
