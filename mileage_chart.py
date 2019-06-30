@@ -3,6 +3,7 @@ import json
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import calendar
 import datetime
 import sys
 
@@ -31,16 +32,19 @@ y = list(map(lambda dt: monmile[dt], x))
 nmons = 3
 y2 = np.convolve(y, np.ones(nmons)/nmons, mode='valid')
 
-width=31
+width=3100/len(x)
 
 fig, ax = plt.subplots()
-ax.bar(x, y, width, color='#95d0fc', alpha=0.5, label='月間走行距離')
+ax.bar(x, y, width, align='edge', color='#95d0fc', alpha=0.5, label='月間走行距離')
 ax.plot(x[2:], y2, color='#0343df', label='移動平均(3ヵ月)')
 ax.set_ylabel("月間走行距離(km)")
 
 ax.legend(loc=0)
 
 ax.grid()
+
+lastdt = datetime.datetime(x[-1].year, x[-1].month, calendar.monthrange(x[-1].year,x[-1].month)[1])
+plt.xlim(x[0], lastdt)
 
 fig.set_size_inches(16.0, 6.0)
 fig.savefig(pngfn)
